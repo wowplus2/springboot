@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="utf-8" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"></meta>
+		<meta http-equiv="Content-Type" content="text/html"></meta>
+		<title>Spring Boot - My journal</title>
+		<link rel="stylesheet" type="text/css" media="all" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" media="all" href="css/bootstrap-glyphicons.css" />
+		<link rel="stylesheet" type="text/css" media="all" href="css/styles.css" />
+	</head>
+	<body>
+		<div class="container">
+			<h1>Diary by Spring Boot</h1>
+			
+			<ul class="timeline">
+				<div th:each="entry,status : ${journal}">
+					<li th:attr="class=${status.odd} ? 'timeline-inverted' : ''"></li>
+						<div class="tl-circ"></div>
+						<div class="timeline-panel">
+							<div class="tl-heading">
+								<h4><span th:text="${entry.title}">제 목</span></h4>
+								<p>
+									<small class="text-muted">
+										<i class="glyphicon glyphicon-time"></i>
+										<span th:text="${entry.createAsShort}">에 작성.</span>
+									</small>
+								</p>
+							</div>
+							<div class="tl-body">
+								<p><span th:text="${entry.summary}">요 약</span></p>
+							</div>
+						</div>
+				</div>
+			</ul>
+		</div>
+	</body>
+</html>
